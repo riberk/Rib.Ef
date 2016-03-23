@@ -55,7 +55,9 @@
   <ItemGroup>
     <Compile Include="Conventions\DateTimePrecisionConvention.cs" />
     <Compile Include="Conventions\DecimalPrecisionConvention.cs" />
+    <Compile Include="Conventions\DefaultValueAnnotationConvention.cs" />
     <Compile Include="Conventions\FunctionConvention.cs" />
+    <Compile Include="Conventions\SqlDefaultValueAnnotationConvention.cs" />
     <Compile Include="Helpers\DbMetadataExtensions.cs" />
     <Compile Include="Helpers\PrimitiveTypeKindResolver.cs" />
     <Compile Include="Metadata\DateTimePrecisionAttribute.cs" />
