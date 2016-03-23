@@ -57,9 +57,9 @@
     <Compile Include="Conventions\DecimalPrecisionConvention.cs" />
     <Compile Include="Conventions\FunctionConvention.cs" />
     <Compile Include="Helpers\DbMetadataExtensions.cs" />
+    <Compile Include="Helpers\PrimitiveTypeKindResolver.cs" />
     <Compile Include="Metadata\DateTimePrecisionAttribute.cs" />
     <Compile Include="Metadata\DecimalPrecisionAttribute.cs" />
-    <Compile Include="Metadata\FunctionParameterAttribute.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup />
