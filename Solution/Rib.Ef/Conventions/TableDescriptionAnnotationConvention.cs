@@ -5,11 +5,15 @@
     using System.Linq;
     using System.Text;
 
-    public class DescriptionAnnotationConvention : AttributeToColumnAnnotationConvention<DescriptionAttribute, string>
+    public class TableDescriptionAnnotationConvention : AttributeToTableAnnotationConvention<DescriptionAttribute, string>
     {
         internal const string AnnotationName = "Description";
-
-        public DescriptionAnnotationConvention() : base(AnnotationName, (propertyInfo, attributes) =>
+        /// <summary>
+        /// Constructs a convention that will create table annotations with the given name and
+        ///             using the given factory delegate.
+        /// </summary>
+        /// <param name="annotationName">The name of the annotations to create.</param><param name="annotationFactory">A factory for creating the annotation on each table.</param>
+        public TableDescriptionAnnotationConvention() : base(AnnotationName, (propertyInfo, attributes) =>
         {
             //TODO multi language
             var desc = attributes.Single().Description;
