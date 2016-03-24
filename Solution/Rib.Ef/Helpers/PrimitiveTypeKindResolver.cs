@@ -98,11 +98,8 @@
                 resolvedPrimitiveTypeKind = primitiveTypeKind.Value;
                 return true;
             }
-            else
-            {
-                resolvedPrimitiveTypeKind = default(PrimitiveTypeKind);
-                return false;
-            }
+            resolvedPrimitiveTypeKind = default(PrimitiveTypeKind);
+            return false;
         }
     }
 }

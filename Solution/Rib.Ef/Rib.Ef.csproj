@@ -53,9 +53,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AddDescriptionOperation.cs" />
     <Compile Include="Conventions\DateTimePrecisionConvention.cs" />
     <Compile Include="Conventions\DecimalPrecisionConvention.cs" />
     <Compile Include="Conventions\DefaultValueAnnotationConvention.cs" />
+    <Compile Include="Conventions\DescriptionAnnotationConvention.cs" />
     <Compile Include="Conventions\FunctionConvention.cs" />
     <Compile Include="Conventions\SqlDefaultValueAnnotationConvention.cs" />
     <Compile Include="Helpers\DbMetadataExtensions.cs" />
@@ -64,6 +66,7 @@
     <Compile Include="Metadata\DecimalPrecisionAttribute.cs" />
     <Compile Include="Metadata\SqlDefaultValueAttribute.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RibEfSqlServerMigrationSqlGenerator.cs" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
