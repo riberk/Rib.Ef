@@ -10,12 +10,11 @@
     [Description("Проекты")]
     public class Project
     {
-        [Description("Идентификатор записи")]
         [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
 
         [Required]
-        [Description("Наименование проекта")]
+        [Description("Заголовок проекта")]
         public string Name { get; set; }
 
         [Description("Дата создания записи")]
@@ -28,6 +27,7 @@
         [DateTimePrecision(2)]
         public DateTime LastModified { get; set; }
 
+        [Description("Выделенная сумма")]
         [DecimalPrecision(10, 4)]
         public decimal? Money { get; set; }
     }

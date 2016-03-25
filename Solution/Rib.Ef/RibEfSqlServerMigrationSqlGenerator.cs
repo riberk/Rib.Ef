@@ -109,7 +109,14 @@
                 {
                     throw new InvalidOperationException();
                 }
+                /*
+                
+IF NOT EXISTS (SELECT NULL FROM SYS.EXTENDED_PROPERTIES WHERE [major_id] = OBJECT_ID('Table_Name') AND [name] = N'MS_Description' AND [minor_id] = 0)
+EXECUTE sp_addextendedproperty @name = N'MS_Description', @value = N'This table is responsible for holding information.', @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'TABLE', @level1name = N'Table_Name';
 
+IF NOT EXISTS (SELECT NULL FROM SYS.EXTENDED_PROPERTIES WHERE [major_id] = OBJECT_ID('Table_Name') AND [name] = N'MS_Description' AND [minor_id] = (SELECT [column_id] FROM SYS.COLUMNS WHERE [name] = 'Column_Name' AND [object_id] = OBJECT_ID('Table_Name')))
+EXECUTE sp_addextendedproperty @name = N'MS_Description', @value = N'This column is responsible for holding information for table Table_Name.', @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'TABLE', @level1name = N'Table_Name', @level2type = N'COLUMN', @level2name = N'Column_Name';
+                */
                 writer.WriteLine("EXEC sys.sp_addextendedproperty");
                 writer.WriteLine("@name = N'Description',");
                 writer.WriteLine($"@value = N'{descriptionValue}',");

@@ -80,6 +80,10 @@
     <Compile Include="Migrations\201603241002520_AddLastModifiedWithAnotAndAddAnotToName.Designer.cs">
       <DependentUpon>201603241002520_AddLastModifiedWithAnotAndAddAnotToName.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201603250542396_RemoveDescriptions.cs" />
+    <Compile Include="Migrations\201603250542396_RemoveDescriptions.Designer.cs">
+      <DependentUpon>201603250542396_RemoveDescriptions.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -96,6 +100,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201603241002520_AddLastModifiedWithAnotAndAddAnotToName.resx">
       <DependentUpon>201603241002520_AddLastModifiedWithAnotAndAddAnotToName.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201603250542396_RemoveDescriptions.resx">
+      <DependentUpon>201603250542396_RemoveDescriptions.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
