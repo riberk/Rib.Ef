@@ -27,8 +27,6 @@
 
         protected override void Generate(CreateTableOperation createTableOperation)
         {
-            
-
             SetColumnsAnnotations(createTableOperation.Columns, createTableOperation.Name);
 
             base.Generate(createTableOperation);
@@ -43,30 +41,24 @@
 
             foreach (var columnModel in createTableOperation.Columns)
             {
-                AnnotationValues descriptionValue;
-                if (columnModel.Annotations.TryGetValue(DescriptionAnnotationConvention.AnnotationName, out descriptionValue))
-                {
-                    AddDescription((string)descriptionValue.NewValue, createTableOperation.Name, columnModel.Name);
-                }
+                AddDescriptionToColumnFromAnnoatation(DescriptionAnnotationConvention.AnnotationName, createTableOperation.Name, columnModel);
             }
         }
 
         /// <summary>
-        /// Override this method to generate SQL when the definition of a table or its attributes are changed.
-        ///             The default implementation of this method does nothing.
+        ///     Override this method to generate SQL when the definition of a table or its attributes are changed.
+        ///     The default implementation of this method does nothing.
         /// </summary>
         /// <param name="alterTableOperation">The operation describing changes to the table. </param>
         protected override void Generate(AlterTableOperation alterTableOperation)
         {
             base.Generate(alterTableOperation);
 
-            AnnotationValues description;
-            if (alterTableOperation.Annotations.TryGetValue(TableDescriptionAnnotationConvention.AnnotationName, out description))
-            {
-                AddDescription((string)description.NewValue, alterTableOperation.Name, null);
-            }
+            AnnotationAction<string>(
+                alterTableOperation.Annotations,
+                TableDescriptionAnnotationConvention.AnnotationName,
+                s => AddDescription(s, alterTableOperation.Name, null));
         }
-
 
         protected override void Generate(AlterColumnOperation alterColumnOperation)
         {
@@ -74,20 +66,35 @@
 
             base.Generate(alterColumnOperation);
 
-            AnnotationValues descriptionValue;
-            if (alterColumnOperation.Column.Annotations.TryGetValue(DescriptionAnnotationConvention.AnnotationName, out descriptionValue))
-            {
-                AddDescription((string)descriptionValue.NewValue, alterColumnOperation.Table, alterColumnOperation.Column.Name);
-            }
+            AnnotationAction<string>(
+                alterColumnOperation.Column.Annotations,
+                DescriptionAnnotationConvention.AnnotationName,
+                s => AddDescription(s, alterColumnOperation.Table, alterColumnOperation.Column.Name));
         }
 
+        private void AddDescriptionToColumnFromAnnoatation([NotNull] string annotationName, [NotNull] string table, [NotNull] ColumnModel column)
+        {
+            AnnotationAction<string>(column.Annotations, annotationName, s => AddDescription(s, table, column.Name));
+        }
+
+        private static void AnnotationAction<T>(
+            [NotNull] IDictionary<string, AnnotationValues> dict,
+            [NotNull] string name,
+            [NotNull] Action<T> action)
+        {
+            AnnotationValues value;
+            if (dict.TryGetValue(name, out value))
+            {
+                action((T)value.NewValue);
+            }
+        }
 
         private void AddDescription(string descriptionValue, string table, string column)
         {
             using (var writer = Writer())
             {
                 string scheme;
-                var tableParts = table.Split(new []{ "." }, StringSplitOptions.None);
+                var tableParts = table.Split(new[] {"."}, StringSplitOptions.None);
                 if (tableParts.Length == 2)
                 {
                     table = tableParts[1];
@@ -128,7 +135,7 @@
         {
             AnnotationValues defaultValueSql;
             AnnotationValues defaultValue;
-            
+
             if (column.Annotations.TryGetValue(SqlDefaultValueAnnotationConvention.AnnotationName, out defaultValueSql))
             {
                 column.DefaultValueSql = (string) defaultValueSql.NewValue;
@@ -137,7 +144,6 @@
             {
                 column.DefaultValue = defaultValue.NewValue;
             }
-            
         }
     }
 }

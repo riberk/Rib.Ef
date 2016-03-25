@@ -9,6 +9,7 @@
     using System.Reflection;
     using JetBrains.Annotations;
     using Rib.Ef.Helpers;
+    using Rib.Ef.Metadata;
 
     public class FunctionConvention : IStoreModelConvention<EdmModel>
     {
@@ -67,7 +68,21 @@
                 {
                     throw new InvalidOperationException($"{info.ParameterType} is undefined PrimitiveTypeKind");
                 }
-                return new Parameter(kind, info.Name);
+                var paramAttr = info.GetCustomAttribute<DbFunctionParameterAttribute>();
+                string name;
+                if (paramAttr != null)
+                {
+                    name = paramAttr.Name;
+                }
+                else if (!string.IsNullOrWhiteSpace(info.Name))
+                {
+                    name = info.Name;
+                }
+                else
+                {
+                    throw new InvalidOperationException("Parameter info must have name or DbFunctionParameterAttribute");
+                }
+                return new Parameter(kind, name);
             }
 
             public FunctionParameter ToFunctionParameter([NotNull] DbModel model, ParameterMode mode)

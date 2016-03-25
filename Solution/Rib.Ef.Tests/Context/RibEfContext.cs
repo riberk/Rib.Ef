@@ -2,6 +2,7 @@
 {
     using System.Configuration;
     using System.Data.Entity;
+    using System.Data.Entity.SqlServer;
     using System.Diagnostics;
     using System.IO;
     using Rib.Ef.Conventions;
@@ -38,10 +39,8 @@
             modelBuilder.Conventions.Add(new DefaultValueAnnotationConvention());
             modelBuilder.Conventions.Add(new DescriptionAnnotationConvention());
             modelBuilder.Conventions.Add(new TableDescriptionAnnotationConvention());
-            
-            //modelBuilder.Conventions.Add(new FunctionConvention());
+            modelBuilder.Conventions.Add(new FunctionConvention(typeof(RibEfFunctions)));
             modelBuilder.Conventions.Add(new SqlDefaultValueAnnotationConvention());
-
             base.OnModelCreating(modelBuilder);
         }
     }

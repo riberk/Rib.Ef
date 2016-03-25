@@ -69,6 +69,7 @@
   </Choose>
   <ItemGroup>
     <Compile Include="Context\RibEfContext.cs" />
+    <Compile Include="Context\RibEfFunctions.cs" />
     <Compile Include="Context\Tables\ApplicationTask.cs" />
     <Compile Include="Context\Tables\Project.cs" />
     <Compile Include="Migrations\201603240706527_Init.cs" />
