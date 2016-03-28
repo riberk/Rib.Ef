@@ -5,6 +5,7 @@
     using System.Data.Entity.Infrastructure.Annotations;
     using System.Data.Entity.Migrations.Model;
     using System.Data.Entity.SqlServer;
+    using System.IO;
     using JetBrains.Annotations;
     using Rib.Ef.Conventions;
 
@@ -85,7 +86,7 @@
             AnnotationValues value;
             if (dict.TryGetValue(name, out value))
             {
-                action((T)value.NewValue);
+                action((T) value.NewValue);
             }
         }
 
@@ -109,24 +110,33 @@
                 {
                     throw new InvalidOperationException();
                 }
-                /*
-                
-IF NOT EXISTS (SELECT NULL FROM SYS.EXTENDED_PROPERTIES WHERE [major_id] = OBJECT_ID('Table_Name') AND [name] = N'MS_Description' AND [minor_id] = 0)
-EXECUTE sp_addextendedproperty @name = N'MS_Description', @value = N'This table is responsible for holding information.', @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'TABLE', @level1name = N'Table_Name';
-
-IF NOT EXISTS (SELECT NULL FROM SYS.EXTENDED_PROPERTIES WHERE [major_id] = OBJECT_ID('Table_Name') AND [name] = N'MS_Description' AND [minor_id] = (SELECT [column_id] FROM SYS.COLUMNS WHERE [name] = 'Column_Name' AND [object_id] = OBJECT_ID('Table_Name')))
-EXECUTE sp_addextendedproperty @name = N'MS_Description', @value = N'This column is responsible for holding information for table Table_Name.', @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'TABLE', @level1name = N'Table_Name', @level2type = N'COLUMN', @level2name = N'Column_Name';
-                */
+                writer.WriteLine();
+                writer.Write(
+                    $"IF NOT EXISTS (SELECT NULL FROM SYS.EXTENDED_PROPERTIES WHERE [major_id] = OBJECT_ID('{table}') AND [name] = N'Description' AND [minor_id] = ");
+                writer.Write(
+                    string.IsNullOrWhiteSpace(column)
+                        ? "0"
+                        : $"(SELECT [column_id] FROM SYS.COLUMNS WHERE [name] = '{column}' AND [object_id] = OBJECT_ID('{table}'))");
+                writer.Write(")");
+                writer.WriteLine();
                 writer.WriteLine("EXEC sys.sp_addextendedproperty");
-                writer.WriteLine("@name = N'Description',");
-                writer.WriteLine($"@value = N'{descriptionValue}',");
-                writer.WriteLine($"@level0type = N'SCHEMA', @level0name = '{scheme}',");
-                writer.WriteLine($"@level1type = N'TABLE', @level1name = '{table}'");
-                if (!string.IsNullOrWhiteSpace(column))
-                {
-                    writer.WriteLine($",@level2type = N'Column', @level2name = '{column}'");
-                }
+                WriteExtendedProperty(writer, "Description", descriptionValue, scheme, table, column);
+                writer.WriteLine("ELSE");
+                writer.WriteLine("EXEC sys.sp_updateextendedproperty");
+                WriteExtendedProperty(writer, "Description", descriptionValue, scheme, table, column);
                 Statement(writer);
+            }
+        }
+
+        private void WriteExtendedProperty([NotNull] TextWriter writer, string name, string value, string scheme, string table, string column)
+        {
+            writer.WriteLine($"@name = N'{name}',");
+            writer.WriteLine($"@value = N'{value}',");
+            writer.WriteLine($"@level0type = N'SCHEMA', @level0name = '{scheme}',");
+            writer.WriteLine($"@level1type = N'TABLE', @level1name = '{table}'");
+            if (!string.IsNullOrWhiteSpace(column))
+            {
+                writer.WriteLine($",@level2type = N'Column', @level2name = '{column}'");
             }
         }
 
