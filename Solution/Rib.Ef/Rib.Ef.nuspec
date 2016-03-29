@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+  <metadata>
+    <id>Rib.Ef</id>
+    <version>1.0.1</version>
+    <title>Rib.Ef</title>
+    <authors>Pavel Kurdikov</authors>
+    <owners>Pavel Kurdikov</owners>
+    <licenseUrl>https://github.com/riberk/Rib.Ef/blob/master/LICENSE.md</licenseUrl>
+    <projectUrl>https://github.com/riberk/Rib.Ef</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Entity framework infrastructure for precision, sqldefaultvalue, functions etc.</description>
+    <releaseNotes></releaseNotes>
+    <copyright>Copyright 2016</copyright>
+    <tags></tags>
+    <dependencies>
+      <dependency id="EntityFramework" version="[6.1.3, 7)" />
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="bin\Release\Rib.Ef.dll" target="lib\net45" />
+  </files>
+</package>

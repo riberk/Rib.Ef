@@ -22,7 +22,7 @@
   </Target>
 
   <Target Name="Build" DependsOnTargets="Init">
-    <MSBuild Projects="$(SolutionDirectory)\Rib.Common.sln" Properties="Configuration=$(ConfigurationName)" Targets="Clean; Build" />
+    <MSBuild Projects="$(SolutionDirectory)\Rib.Ef.sln" Properties="Configuration=$(ConfigurationName)" Targets="Clean; Build" />
   </Target>
 
 </Project>
