@@ -84,6 +84,10 @@
     <Compile Include="Migrations\201603250542396_RemoveDescriptions.Designer.cs">
       <DependentUpon>201603250542396_RemoveDescriptions.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201603290431341_Tasks.cs" />
+    <Compile Include="Migrations\201603290431341_Tasks.Designer.cs">
+      <DependentUpon>201603290431341_Tasks.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -103,6 +107,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201603250542396_RemoveDescriptions.resx">
       <DependentUpon>201603250542396_RemoveDescriptions.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201603290431341_Tasks.resx">
+      <DependentUpon>201603290431341_Tasks.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
