@@ -4,6 +4,7 @@
     using System.ComponentModel;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
+    using Rib.Ef.Metadata;
 
     public class ApplicationTask
     {
@@ -21,6 +22,9 @@
         [ForeignKey(nameof(ProjectId))]
         public Project Project { get; set; }
 
-        public DateTime Craeted { get; set; }
+        [DateTimePrecision(2)]
+        [SqlDefaultValue("GETUTCDATE()")]
+        [Column(nameof(Created), TypeName = "datetime2")]
+        public DateTime Created { get; set; }
     }
 }
