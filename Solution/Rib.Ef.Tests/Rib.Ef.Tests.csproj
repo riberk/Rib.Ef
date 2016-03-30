@@ -71,7 +71,9 @@
     <Compile Include="Context\RibEfContext.cs" />
     <Compile Include="Context\RibEfFunctions.cs" />
     <Compile Include="Context\Tables\ApplicationTask.cs" />
+    <Compile Include="Context\Tables\Comment.cs" />
     <Compile Include="Context\Tables\Project.cs" />
+    <Compile Include="Context\Tables\User.cs" />
     <Compile Include="Migrations\201603240706527_Init.cs" />
     <Compile Include="Migrations\201603240706527_Init.Designer.cs">
       <DependentUpon>201603240706527_Init.cs</DependentUpon>
@@ -91,6 +93,14 @@
     <Compile Include="Migrations\201603290437223_TaskDateTime2.cs" />
     <Compile Include="Migrations\201603290437223_TaskDateTime2.Designer.cs">
       <DependentUpon>201603290437223_TaskDateTime2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201603290619055_CommentsAndUsers.cs" />
+    <Compile Include="Migrations\201603290619055_CommentsAndUsers.Designer.cs">
+      <DependentUpon>201603290619055_CommentsAndUsers.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201603300747552_AddField.cs" />
+    <Compile Include="Migrations\201603300747552_AddField.Designer.cs">
+      <DependentUpon>201603300747552_AddField.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Program.cs" />
@@ -117,6 +127,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201603290437223_TaskDateTime2.resx">
       <DependentUpon>201603290437223_TaskDateTime2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201603290619055_CommentsAndUsers.resx">
+      <DependentUpon>201603290619055_CommentsAndUsers.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201603300747552_AddField.resx">
+      <DependentUpon>201603300747552_AddField.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

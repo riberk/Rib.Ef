@@ -17,6 +17,7 @@
 
         public DbSet<Project> Projects { get; set; }
         public IDbSet<ApplicationTask> Tasks { get; set; }
+        public IDbSet<Comment> Comments { get; set; }
 
         /// <summary>
         /// This method is called when the model for a derived context has been initialized, but

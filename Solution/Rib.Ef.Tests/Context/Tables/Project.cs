@@ -30,5 +30,8 @@
         [Description("Выделенная сумма")]
         [DecimalPrecision(10, 4)]
         public decimal? Money { get; set; }
+
+        [Description("Описание")]
+        public string Description { get; set; }
     }
 }

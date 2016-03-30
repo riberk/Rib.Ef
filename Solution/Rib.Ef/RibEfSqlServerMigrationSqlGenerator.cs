@@ -4,6 +4,7 @@
     using System.Collections.Generic;
     using System.Data.Entity.Infrastructure.Annotations;
     using System.Data.Entity.Migrations.Model;
+    using System.Data.Entity.Migrations.Sql;
     using System.Data.Entity.SqlServer;
     using System.IO;
     using JetBrains.Annotations;
@@ -24,6 +25,11 @@
             SetColumnsAnnotations(addColumnOperation.Column);
 
             base.Generate(addColumnOperation);
+
+            AnnotationAction<string>(
+                addColumnOperation.Column.Annotations,
+                DescriptionAnnotationConvention.AnnotationName,
+                s => AddDescription(s, addColumnOperation.Table, addColumnOperation.Column.Name));
         }
 
         protected override void Generate(CreateTableOperation createTableOperation)
@@ -60,6 +66,7 @@
                 TableDescriptionAnnotationConvention.AnnotationName,
                 s => AddDescription(s, alterTableOperation.Name, null));
         }
+
 
         protected override void Generate(AlterColumnOperation alterColumnOperation)
         {
