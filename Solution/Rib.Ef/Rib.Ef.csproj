@@ -63,6 +63,11 @@
     <Compile Include="Conventions\TableDescriptionAnnotationConvention.cs" />
     <Compile Include="Helpers\DbMetadataExtensions.cs" />
     <Compile Include="Helpers\PrimitiveTypeKindResolver.cs" />
+    <Compile Include="Interceptors\IInterceptor.cs" />
+    <Compile Include="Interceptors\IInterceptorsInvoker.cs" />
+    <Compile Include="Interceptors\Interceptor.cs" />
+    <Compile Include="Interceptors\InterceptorsEngine.cs" />
+    <Compile Include="Interceptors\InterceptorsInvoker.cs" />
     <Compile Include="Metadata\DateTimePrecisionAttribute.cs" />
     <Compile Include="Metadata\DbFunctionParameterAttribute.cs" />
     <Compile Include="Metadata\DecimalPrecisionAttribute.cs" />

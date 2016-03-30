@@ -68,8 +68,10 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="Context\Interfaces\IHasUpdateDate.cs" />
     <Compile Include="Context\RibEfContext.cs" />
     <Compile Include="Context\RibEfFunctions.cs" />
+    <Compile Include="Context\SetUpdateDateInterceptor.cs" />
     <Compile Include="Context\Tables\ApplicationTask.cs" />
     <Compile Include="Context\Tables\Comment.cs" />
     <Compile Include="Context\Tables\Project.cs" />
@@ -101,6 +103,10 @@
     <Compile Include="Migrations\201603300747552_AddField.cs" />
     <Compile Include="Migrations\201603300747552_AddField.Designer.cs">
       <DependentUpon>201603300747552_AddField.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201603301927169_SqlGeneratedOnCreatedOnUser.cs" />
+    <Compile Include="Migrations\201603301927169_SqlGeneratedOnCreatedOnUser.Designer.cs">
+      <DependentUpon>201603301927169_SqlGeneratedOnCreatedOnUser.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Program.cs" />
@@ -134,6 +140,9 @@
     <EmbeddedResource Include="Migrations\201603300747552_AddField.resx">
       <DependentUpon>201603300747552_AddField.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201603301927169_SqlGeneratedOnCreatedOnUser.resx">
+      <DependentUpon>201603301927169_SqlGeneratedOnCreatedOnUser.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config">
@@ -142,6 +151,7 @@
     </None>
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
       <ItemGroup>

@@ -4,8 +4,9 @@
     using System.ComponentModel;
     using System.ComponentModel.DataAnnotations.Schema;
     using Rib.Ef.Metadata;
+    using Rib.Ef.Tests.Context.Interfaces;
 
-    public class Comment
+    public class Comment : IHasUpdateDate
     {
         public int Id { get; set; }
 
