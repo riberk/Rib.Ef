@@ -68,6 +68,7 @@
     <Compile Include="Interceptors\Interceptor.cs" />
     <Compile Include="Interceptors\InterceptorsEngine.cs" />
     <Compile Include="Interceptors\InterceptorsInvoker.cs" />
+    <Compile Include="Metadata\ContextDataReader.cs" />
     <Compile Include="Metadata\DateTimePrecisionAttribute.cs" />
     <Compile Include="Metadata\DbFunctionParameterAttribute.cs" />
     <Compile Include="Metadata\DecimalPrecisionAttribute.cs" />
