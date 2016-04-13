@@ -69,6 +69,7 @@
     <Compile Include="Infrastructure\Context\Tables\Project.cs" />
     <Compile Include="Infrastructure\Context\Tables\Tag.cs" />
     <Compile Include="Interceptors\InterceptorsInvokerTests.cs" />
+    <Compile Include="Interceptors\InterceptorTests.cs" />
     <Compile Include="Metadata\ContextDataReaderTests.cs" />
     <Compile Include="Migrations\201604130906328_Init.cs" />
     <Compile Include="Migrations\201604130906328_Init.Designer.cs">

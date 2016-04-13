@@ -1,5 +1,6 @@
 ﻿namespace Rib.Ef.Interceptors
 {
+    using System;
     using System.Collections.Generic;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
@@ -12,22 +13,22 @@
         protected abstract HashSet<EntityState> States { get; }
 
 
-        public int Order(DbEntityEntry entry)
+        public virtual int Order(DbEntityEntry entry)
         {
             return int.MaxValue;
         }
 
-        public bool IsApplicable(DbEntityEntry entry)
+        public virtual bool IsApplicable(DbEntityEntry entry)
         {
             var entity = entry.Entity as T;
             return States.Contains(entry.State) && entity != null;
         }
 
-        public void BeforeSave(DbEntityEntry entry)
+        public virtual void BeforeSave(DbEntityEntry entry)
         {
-            BeforeSave((T) entry.Entity);
+            BeforeSave((T)entry.Entity);
         }
 
-        protected abstract void BeforeSave(T entity);
+        protected abstract void BeforeSave([NotNull] T entity);
     }
 }
