@@ -3,14 +3,19 @@
     using System.Collections.Generic;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
-    using System.Threading.Tasks;
     using JetBrains.Annotations;
 
     public abstract class Interceptor<T> : IInterceptor
-        where T: class 
+            where T : class
     {
         [NotNull]
-        protected abstract  HashSet<EntityState> States { get; }
+        protected abstract HashSet<EntityState> States { get; }
+
+
+        public int Order(DbEntityEntry entry)
+        {
+            return int.MaxValue;
+        }
 
         public bool IsApplicable(DbEntityEntry entry)
         {
